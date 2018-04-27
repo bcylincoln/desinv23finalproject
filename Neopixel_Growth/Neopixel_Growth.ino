@@ -110,7 +110,7 @@ void loop() {
 }
 
 void grow(int vine, int number, int colorRed, int colorGreen, int colorBlue) {
-  pixels.setPixelColor(getPixelOnVine(vine, number), pixels.Color(colorRed, colorGreen, colorBlue));
+  pixels.setPixelColor(getPixelOnVine(vine, number)+1, pixels.Color(colorRed, colorGreen, colorBlue));
   pixels.show();
 }
 
