@@ -28,11 +28,14 @@ Servo myservo8;
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(58, A0, NEO_GRB + NEO_KHZ800);
 
+const int buttonPin = A2;     // the number of the pushbutton pin
+int buttonState = 0;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   AFMS.begin();
-
+  
   myservo1.attach(3);  
   myservo2.attach(5);
   myservo3.attach(6);
@@ -60,28 +63,33 @@ void setup() {
 
 void loop() {
   int pos = 0;
-  for (pos = 45; pos <= 135; pos += 1) { // goes from 45 degrees to 135 degrees
-    // in steps of 1 degree
-    myservo1.write(pos);              // tell servo to go to position in variable 'pos'
-    myservo2.write(pos);
-    myservo3.write(pos);
-    myservo4.write(pos);
-    myservo5.write(pos);
-    myservo6.write(pos);
-    myservo7.write(pos);
-    myservo8.write(pos);
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
-  for (pos = 135; pos >= 45; pos -= 1) { // goes from 135 degrees to 45 degrees
-    myservo1.write(pos);              // tell servo to go to position in variable 'pos'
-    myservo2.write(pos);
-    myservo3.write(pos); 
-    myservo4.write(pos); 
-    myservo5.write(pos); 
-    myservo6.write(pos); 
-    myservo7.write(pos); 
-    myservo8.write(pos);  
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
   
+  for(int i=0;i<58;i++){
+
+    // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
+    pixels.setPixelColor(i, pixels.Color(0,150,0)); // Moderately bright green color.
+
+    pixels.show(); // This sends the updated pixel color to the hardware.
+  }  
 }
+
+void fall() {
+  Serial.println("fall");
+}
+
+void winter() {
+  Serial.println("winter");
+}
+
+void spring() {
+  Serial.println("spring");
+}
+
+void summer() {
+  Serial.println("summer");
+}
+
+
+
+
+

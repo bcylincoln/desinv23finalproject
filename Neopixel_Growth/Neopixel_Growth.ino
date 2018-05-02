@@ -18,150 +18,60 @@ void loop() {
   int red = 10;
   int green = 180;
   int blue = 10;
-//  pixels.setPixelColor(0, pixels.Color(red, green, blue));
-//  pixels.show();
-  grow(1, 0, red, green, blue);
-  grow(2, 0, red, green, blue);
-  grow(3, 0, red, green, blue);
-  grow(4, 0, red, green, blue);
-  grow(5, 0, red, green, blue);
-  grow(6, 0, red, green, blue);
 
-  delay(1000);
-  
-  grow(1, 1, red, green, blue);
-  grow(2, 1, red, green, blue);
-  grow(3, 1, red, green, blue);
-  grow(4, 1, red, green, blue);
-  grow(5, 1, red, green, blue);
-  grow(6, 1, red, green, blue);
+  for (int i = 0; i < 10; i++) {
+    for (int vine = 0; vine < 6; vine++) {
+      setColor(vine, i, red, green, blue);
+    }
+    pixels.show();   
+    if (i == 2 || i == 6) {
+      delay(2500);
+    } else {
+      delay(500);
+    }
 
-  delay(2000);
-  
-  grow(1, 2, red, green, blue);
-  grow(2, 2, red, green, blue);
-  grow(3, 2, red, green, blue);
-  grow(4, 2, red, green, blue);
-  grow(5, 2, red, green, blue);
-  grow(6, 2, red, green, blue);
-  
-  delay(8000);
-
-  grow(1, 3, red, green, blue);
-  grow(2, 3, red, green, blue);
-  grow(3, 3, red, green, blue);
-  grow(4, 3, red, green, blue);
-  grow(5, 3, red, green, blue);
-  grow(6, 3, red, green, blue);
-
-  delay(2000);
-
-  grow(1, 4, red, green, blue);
-  grow(2, 4, red, green, blue);
-  grow(3, 4, red, green, blue);
-  grow(4, 4, red, green, blue);
-  grow(5, 4, red, green, blue);
-  grow(6, 4, red, green, blue);
-
-  delay(1500);
-
-  grow(1, 5, red, green, blue);
-  grow(2, 5, red, green, blue);
-  grow(3, 5, red, green, blue);
-  grow(4, 5, red, green, blue);
-  grow(5, 5, red, green, blue);
-  grow(6, 5, red, green, blue);
-
-  delay(1800);
-
-  grow(1, 6, red, green, blue);
-  grow(2, 6, red, green, blue);
-  grow(3, 6, red, green, blue);
-  grow(4, 6, red, green, blue);
-  grow(5, 6, red, green, blue);
-  grow(6, 6, red, green, blue);
-
-  delay(8000);
-
-  grow(1, 7, red, green, blue);
-  grow(2, 7, red, green, blue);
-  grow(3, 7, red, green, blue);
-  grow(4, 7, red, green, blue);
-  grow(5, 7, red, green, blue);
-  grow(6, 7, red, green, blue);
-
-  delay(2900);
-
-  grow(1, 8, red, green, blue);
-  grow(2, 8, red, green, blue);
-  grow(3, 8, red, green, blue);
-  grow(4, 8, red, green, blue);
-  grow(5, 8, red, green, blue);
-  grow(6, 8, red, green, blue);
-
-  delay(1200);
-
-  grow(1, 9, red, green, blue);
-  grow(3, 9, red, green, blue);
-  grow(4, 9, red, green, blue);
-  grow(5, 9, red, green, blue);
-  grow(6, 9, red, green, blue);
+  }
  
 }
 
-void grow(int vine, int number, int colorRed, int colorGreen, int colorBlue) {
-  pixels.setPixelColor(getPixelOnVine(vine, number)+1, pixels.Color(colorRed, colorGreen, colorBlue));
-  pixels.show();
+void setColor(int vine, int number, int colorRed, int colorGreen, int colorBlue) {
+  pixels.setPixelColor(getPixelOnVine(vine, number), pixels.Color(colorRed, colorGreen, colorBlue));
 }
 
-float getPixelOnVine(int vine, int number){
-  if (vine == 1) {
-    return number;
-  } else if (vine == 2) {
-     if (number >= 9) {
-      return 18-8;
-     }
-     for (int i = 0; i < 9; i++) {
-       if (number == i) {
-         return 18-i;
-       }
-     }
-  } else if (vine == 3) {
-     if (number >= 10) {
-      return 19+9;
-     }
-     for (int i = 0; i < 10; i++) {
-       if (number == i) {
-         return 19+i;
-       }
-     }
-  } else if (vine == 4) {
-     if (number >= 10) {
-      return 38-9;
-     }
-     for (int i = 0; i < 10; i++) {
-       if (number == i) {
-         return 38-i;
-       }
-     }
-  } else if (vine == 5) {
-    if (number >= 10) {
-      return 39+9;
-    }
-     for (int i = 0; i < 10; i++) {
-       if (number == i) {
-         return 39+i;
-       }
-     }
-  } else if (vine == 6) {
-    if (number >= 10) {
-      return 58-9;
-    }
-     for (int i = 0; i < 10; i++) {
-       if (number == i) {
-         return 58-i;
-       }
-     }
+int getPixelOnVine(int vine, int i) {
+  switch(vine) {
+    case 0:
+      return i;
+      break;
+
+    case 1:
+      if (i == 9) {
+        return 10;
+      } else {
+        return 18 - i;
+      }
+      break;
+
+    case 2:
+      return 19 + i; 
+      break;
+
+    case 3:
+      if (i == 0) {
+        return 37;
+      } else {
+        return 38 - i;
+      }
+      break;
+       
+    case 4:
+      return 38 + i;
+       break;
+       
+    case 5:
+      return 57 - i;
+       break;
+     
   }
 }
 
